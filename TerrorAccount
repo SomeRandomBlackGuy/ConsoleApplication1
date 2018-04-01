@@ -1,0 +1,66 @@
+// BankOfTerror.cpp : Defines the entry point for the console application.
+
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+
+void original(int accountBalance1, int accountBalance2);
+void hacked(int& accountBalance1, int& accountBalance2);
+
+void original(int accountBalance1, int accountBalance2)
+{
+	int temp = accountBalance1;
+	accountBalance1 = accountBalance2;
+	accountBalance2 = temp;
+}
+
+void hacked(int& accountBalance1, int& accountBalance2)
+{
+	int temp = accountBalance1;
+	accountBalance1 = accountBalance2;
+	accountBalance2 = temp;
+}
+
+
+int main()
+{
+	int terrorAccount = 720000000;
+	int DepartmentOfEducation = 812;
+
+	cout << "Orignal values\n";
+	cout << "\n" << endl;
+
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+
+	cout << "Time:2359 Date:03-31-2018 Account Balance" << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+	
+	original(terrorAccount, DepartmentOfEducation);
+
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+
+	hacked(terrorAccount, DepartmentOfEducation);
+	cout << "Time:0001 Date:04-01-2018 Account Balance" << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	system("pause");
+
+	return 0;
+}
