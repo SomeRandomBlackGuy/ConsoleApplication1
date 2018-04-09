@@ -1,0 +1,76 @@
+// BankOfTerror.cpp : Defines the entry point for the console application.
+
+// Imported libraries
+#include "stdafx.h"
+#include <iostream>
+
+// To inform program about not using imported varibales from other libraries
+using namespace std;
+
+// informing program of variables that are in the program
+void original(int accountBalance1, int accountBalance2);
+void hacked(int * accountBalance1, int * accountBalance2);
+
+// function for the original numbers
+void original(int accountBalance1, int accountBalance2)
+{
+	int temp = accountBalance1;
+	accountBalance1 = accountBalance2;
+	accountBalance2 = temp;
+}
+
+// hacked version that uses pointers
+void hacked(int * accountBalance1, int * accountBalance2)
+{
+	int temp =  * accountBalance1;
+	* accountBalance1 = * accountBalance2;
+	* accountBalance2 =  temp;
+}
+
+
+int main() // main program
+{
+	// int variables for the program - - preset by creator
+	int terrorAccount = 720000000;
+	int DepartmentOfEducation = 812;
+
+	// print statements
+	cout << "Orignal values\n";
+	cout << "\n" << endl;
+	// to show the orginal variables
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+	// first part before functions are called
+	cout << "Time:2359 Date:03-31-2018 Account Balance" << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+	
+	// calls functions to show orignal varible
+	original(terrorAccount, DepartmentOfEducation);
+
+	// print statements
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+
+	// calls function to show hacked version
+	hacked(& terrorAccount,& DepartmentOfEducation);
+	cout << "Time:0001 Date:04-01-2018 Account Balance" << endl;
+
+	cout << "\n" << endl;
+	cout << "\n" << endl;
+	// print statements
+	cout << "Bank of Terror Balance: " << terrorAccount << endl;
+	cout << "Department of Education: " << DepartmentOfEducation << endl;
+
+	// System Pause
+	system("pause");
+
+	return 0;
+}
