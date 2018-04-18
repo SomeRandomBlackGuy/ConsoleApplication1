@@ -1,0 +1,32 @@
+// Sweat_Tea.cpp : Defines the entry point for the console application.
+//
+// imported classes and header
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "header.h"
+using namespace std;
+int main() // main program
+{
+	print("Welcome"); // print statement
+	string mname = " ";// holds nothing inside of the variable
+	string MyNum; // sets the number to 0 by default
+
+	mname = input("What is your name?"); // takes input from user
+	print("Hello " + mname + " its nice to meet you"); // Speaks to user
+
+	MyNum = input("What is your favorite number?");// Ask user fav number
+	print("The number " + MyNum + " is a cool number!");// speaks number back to user
+
+	int Number=0; // inti var
+	int NewChangedNumber = 0;// inti var
+	NewChangedNumber = num(Number);
+	cout << "My favorite number is " << endl;
+	cout << NewChangedNumber << endl;// printing Com favorite number
+
+	system("pause");// system pause
+
+	return 0;
+
+}// end of program
+
