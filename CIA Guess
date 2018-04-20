@@ -1,0 +1,95 @@
+// imported libraries
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <ctime>
+#include <cctype>
+using namespace std;
+// implies :: so that other libraries don't affect named variables.
+int main()// Main program
+{
+	//setup
+	const int MAX_WRONG = 8;
+	// used to controll the amount of wrong guess before the program "Hangs" the player
+	vector<string> words;// vector
+	words.push_back("INFILTRATE");// Theses words have been added to the vector
+	words.push_back("SURREPTITIOUSLY");
+	words.push_back("ESPIONAGE");
+	words.push_back("AGENT");
+	words.push_back("ENCRYPT");
+	words.push_back("DETECTIVE");
+	words.push_back("OPERATIVE");
+	words.push_back("INFORMANT");
+	words.push_back("SLEEPER");
+	words.push_back("MOLE");
+	
+
+	srand(static_cast<unsigned int>(time(0)));// Designed to grab a random time. 
+	random_shuffle(words.begin(), words.end());// shuffels the words from the begining until the end of the word
+
+	const string THE_WORD = words[0];           //word to guess
+	int wrong = 0;                              //number of incorrect guesses 
+	string soFar(THE_WORD.size(), '-');//word guessed so far
+	string used = "";                           //letters already guessed
+	// print statements
+	cout << "Partner: I need you to try to break into the enemies laptop." << endl;
+	cout << "They seem to have scrambled a word that grants access to all of the information." << endl;
+	cout << "You have been trained for this moment don't let us down." << endl;
+	//main loop
+	while ((wrong < MAX_WRONG) && (soFar != THE_WORD)) // loop for the program
+	{
+		cout << "\n\nYou have " << (MAX_WRONG - wrong);
+		cout << " incorrect guesses left.\n";
+		cout << "\nYou've used the following letters:\n" << used << endl;
+		cout << "\nSo far, the word is:\n" << soFar << endl;
+		char guess; // takes letter from user
+		cout << "\n\nEnter your guess: ";
+		cin >> guess;
+		guess = toupper(guess); //make uppercase since secret word is uppercase
+		while (used.find(guess) != string::npos)// finds the word from the guess
+		{
+			cout << "\nYou' ve already guessed " << guess << endl;
+			cout << "Enter your guess: ";
+			cin >> guess;
+			guess = toupper(guess);
+		}
+
+		used += guess; // adds to guess
+
+		if (THE_WORD.find(guess) != string::npos)
+		{
+			cout << "That's right! " << guess << " is in the word.\n";
+			//update soFar to include newly guessed letter
+			for (int i = 0; i < THE_WORD.length(); ++i)// iterate
+			{
+				if (THE_WORD[i] == guess)
+				{
+					soFar[i] = guess;
+				}
+			}
+		}
+		else // informs that guess isn't in the word
+		{
+			cout << "Sorry, " << guess << " isn’t in the word.\n";
+			++wrong;
+		}
+	}
+	//shut down
+	if (wrong == MAX_WRONG)
+	{
+		cout << "\nThe Alarm was trigger. You were caught!";
+	}
+	else
+	{
+		cout << "\nAccess Granted. The information has been secured.";
+	}
+
+	cout << "\nThe word was " << THE_WORD << endl;
+	
+	system("pause");// pauses system
+	
+	return 0;
+}
